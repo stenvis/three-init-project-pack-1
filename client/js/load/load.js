@@ -1,7 +1,7 @@
 import models from '/js/storage/models.js'; 
 import Collection from '/js/lib/collection/collection.js';
 import CExample from '/js/abstractions/controllers/example.js';
-import BExample from '/js/abstractions/behavioral/example.js';
+import Example from '/js/abstractions/creational/example.js';
 import GLTF from '/js/lib/loaders/gltf.js';
 import initModels from '/js/load/init/models.js';
 
@@ -20,7 +20,7 @@ const load = {
 function loadCharacters() {
    for (const key in models) {
       const url = models[key].url;
-      const example = new BExample(key, url);
+      const example = new Example(key, url);
       example_collection.setObject(key, example);
    };
 };

@@ -1,30 +1,9 @@
-import GLTF from '/js/lib/loaders/gltf.js';
-import handler from '/js/abstractions/handlers/example.js';
-
-const ACTIVE_CLIP_NAME = 'walk';
-
 class BExample {
-   #name;
+   move() {}
 
-   model = {
-      animations: {},
-      mixer: null,
-   };
+   hide() {}
 
-   constructor(name, url) {
-      this.#name = name;
-      GLTF.load(url, this.model, handler);
-   }
-
-   extensions() {
-      const clip = this.model.animations[ACTIVE_CLIP_NAME];
-      const action = this.model.mixer.clipAction(clip);
-      action.play();
-   }
-
-   updateMixer(time) {
-      this.model.mixer.update(time);
-   }
+   unhide() {}
 };
 
 export default BExample;
