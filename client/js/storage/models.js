@@ -1,7 +1,7 @@
 const characters = {
    xbot: {
-      url: '/models/characters/xbot.glb',
-   } 
+      url: '/assets/models/xbot.glb',
+   }
 };
 
 export default characters;

@@ -29,8 +29,8 @@ class Configer {
 
    basicConfiguration() {
       this.setClearColor(CLEAR_COLOR, ALPHA);
-      this.setEncoding('sRGB', false);
-      this.setMapping('ACESFilmic', false);
+      this.setEncoding('sRGB');
+      this.setMapping('ACESFilmic');
       this.setExposure(1.5);
    }
 

@@ -1,25 +1,25 @@
-const add = (element, evType, handler, obj = {
-   add: (element, evType, handler) => (element.addEventListener(evType, handler), obj),
+const addEv = (element, evType, handler, obj = {
+   addEv: (element, evType, handler) => (element.addEventListener(evType, handler), obj),
 }) => (element.addEventListener(evType, handler), obj);
 
-const addList = (elements, evType, handler, obj = {
-   addByLoop: (elements, evType, handler) => { for (const element of elements) element.addEventListener(evType, handler); return obj },
+const addEvArr = (elements, evType, handler, obj = {
+   addEvArr: (elements, evType, handler) => { for (const element of elements) element.addEventListener(evType, handler); return obj },
 }) => { for (const element of elements) element.addEventListener(evType, handler); return obj };
 
-const del = (element, evType, handler, obj = {
-   rm: (element, evType, handler) => (element.removeEventListener(evType, handler), obj),
+const delEv = (element, evType, handler, obj = {
+   delEv: (element, evType, handler) => (element.removeEventListener(evType, handler), obj),
 }) => (element.removeEventListener(evType, handler), obj);
 
-const delList = (elements, evType, handler, obj = {
-   rmByLoop: (elements, evType, handler) => { for (const element of elements) element.removeEventListener(evType, handler); return obj },
+const delEvArr = (elements, evType, handler, obj = {
+   delEvArr: (elements, evType, handler) => { for (const element of elements) element.removeEventListener(evType, handler); return obj },
 }) => { for (const element of elements) element.removeEventListener(evType, handler); return obj };
 
 
 const listener = {
-   add,
-   addList,
-   del,
-   delList,
+   addEv,
+   addEvArr,
+   delEv,
+   delEvArr,
 };
 
 export default listener;

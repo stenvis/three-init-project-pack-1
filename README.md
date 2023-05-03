@@ -1,2 +1,5 @@
-## Start
-**cd three-init-project-pack-1 && node server.js**
+# Three.js init project (non-stop render) 
+**cd dala && node server.js**
+```sh
+127.0.0.1:8001
+```

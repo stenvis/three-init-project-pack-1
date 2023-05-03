@@ -1,20 +1,41 @@
 class Collection {
-   objects = {};
+   #objects = {};
+   #keys= [];
 
    getObject(key) {
-      return this.objects[key];
+      return this.#objects[key];
    }
 
    setObject(key, object) {
-      this.objects[key] = object; 
+      this.#objects[key] = object;
+      this.#keys.push(key);
+   }
+
+   delObject(key) {
+      delete this.#objects[key];
+      const index = this.#keys.indexOf(key);
+      this.#keys.splice(index, 1);
+   }
+
+   reset() {
+      this.#objects = {};
+      this.#keys = [];
+   }
+
+   setKeys(keys) {
+      this.#keys = keys;
    }
 
    get getObjectCount() {
-      return Object.keys(this.objects).length;
+      return this.#keys.length; 
    }
    
    get getObjectKeys() {
-      return Object.keys(this.objects);
+      return this.#keys;
+   }
+
+   get getObjects() {
+      return this.#objects;
    }
 };
 

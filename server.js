@@ -1,3 +1,5 @@
+#!/usr/bin/end node
+
 'use strict';
 
 const 
@@ -52,6 +54,6 @@ http.createServer((req, res) => {
       'Content-Length': size,
       });
    if (stream) stream.pipe(res);
-}).listen(8000, '127.0.0.1');
+}).listen(8001, '0.0.0.0');
 
-console.log('127.0.0.1:8000');
+console.log('127.0.0.1 || 195.20.5.129 :8001');

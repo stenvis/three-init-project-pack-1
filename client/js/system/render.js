@@ -7,7 +7,8 @@ let _rAF;
 
 const
    { canvas } = DOM,
-   { scene, renderer, camera } = system;
+   { scene, renderer, camera } = system,
+   { addEv } = listener;
 
 const resize = new Resize(system, canvas);
 
@@ -22,11 +23,11 @@ function tick() {
    example_controller.updateMixer(0.01);
    renderer.render(scene, camera.src);
    _rAF = requestAnimationFrame(tick, canvas);
-}
+};
 
 function start() {
    tick();
-   listener.add(window, 'resize', _checkResize);
+   addEv(window, 'resize', _checkResize);
    _checkResize();
 };
 
