@@ -1,13 +1,13 @@
 import DOM from '/js/storage/dom.js';
-import listener from '/js/lib/helpers/listener.js';
-import Resize from '/js/lib/resize/resize.js';
+import listener from '/js/lib/helpers/browser/listener.js';
+import Resize from '/js/lib/3D/resize/resize.js';
 import system from '/js/system/system.js';
 
 let _rAF;
 
 const
    { canvas } = DOM,
-   { scene, renderer, camera } = system,
+   { scene, renderer, camera, stats } = system,
    { addEv } = listener;
 
 const resize = new Resize(system, canvas);
@@ -20,9 +20,10 @@ const render = {
 const _checkResize = () => { resize.check(); };
 
 function tick() {
-   example_controller.updateMixer(0.01);
+   stats.begin();
    renderer.render(scene, camera.src);
    _rAF = requestAnimationFrame(tick, canvas);
+   stats.end();
 };
 
 function start() {

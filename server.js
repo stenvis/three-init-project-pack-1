@@ -7,7 +7,9 @@ const
    fs = require('fs'),
    path = require('path');
 
-const CLIENT_PATH = path.join(process.cwd(), './client');
+const 
+   CLIENT_PATH = path.join(process.cwd(), './client'),
+   PORT = 3000;
 
 const MIME_TYPES = {
    html: 'text/html; charset=UTF-8',
@@ -54,6 +56,6 @@ http.createServer((req, res) => {
       'Content-Length': size,
       });
    if (stream) stream.pipe(res);
-}).listen(8001, '0.0.0.0');
+}).listen(PORT, 'localhost');
 
-console.log('127.0.0.1 || 195.20.5.129 :8001');
+console.log(`Server started: \x1b[33mlocalhost:${PORT}\x1b[0m`);
