@@ -1,7 +1,3 @@
-const 
-   CLEAR_COLOR = new THREE.Color(0xd1eaff),
-   ALPHA = .5;
-
 const ENCODING_TYPES = {
    sRGB: THREE.sRGBEncoding,
    Linear: THREE.LinearEncoding,
@@ -28,7 +24,7 @@ class Configer {
    }
 
    basicConfiguration() {
-      this.setClearColor(CLEAR_COLOR, ALPHA);
+      this.setClearColor(new THREE.Color(0xeffdff), .8);
       this.setEncoding('sRGB');
       this.setMapping('NoTone');
    }

@@ -1,7 +1,7 @@
 import model_setter from "./model-setter.js";
 
-const facades = {
+const interfaces = {
    model_setter,
 };
 
-export default facades;
+export default interfaces;

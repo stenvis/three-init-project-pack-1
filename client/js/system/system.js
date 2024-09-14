@@ -2,12 +2,12 @@ import DOM from '/js/storage/dom.js';
 import SYSTEM_PRESETS from '/js/system/presets.js';
 import Configer from '/js/lib/3D/configer/configer.js';
 import Camera from '/js/lib/3D/camera/camera.js';
-import OrbitControl from '/js/lib/3D/controls/orbit.js';
+import OrbitControls from '/js/lib/3D/controls/orbit.js';
 import HemisphereLight from '/js/lib/3D/light/hemisphere.js';
 import Workspace from '/js/lib/abstractions/workspace/workspace.js';
 
 // development
-import { stats } from '/dependencies/three/stats.js'; // FPS
+import Stats from '/dependencies/three/stats/stats.js'; // FPS
 //
 
 const 
@@ -31,15 +31,17 @@ const
    configer = new Configer(),
    workspace = new Workspace(scene);
 
-
 configer.setRenderer(renderer);
 
 const 
    camera = new Camera(CHARACTER_CAMERA_PRESETS),
-   orbit_control = new OrbitControl(camera.src, canvas, ORBIT_CONTROL_PRESETS),
+   orbit = new OrbitControls(camera.src, canvas, ORBIT_CONTROL_PRESETS),
+   stats = new Stats(),
    hemisphere_light = new HemisphereLight(HEMISPHERE_LIGHT_PRESETS); 
 
 scene.add(hemisphere_light);
+
+document.body.appendChild(stats.dom);
 
 const system = {
    scene,

@@ -1,5 +1,5 @@
 import Scene from '/js/lib/abstractions/collections/scene-collections.js';
-import facades from '/js/facades/facades.js';
+import facades from '/js/interfaces/interfaces.js';
 
 const 
    collections_scene_1 = ['models'];
