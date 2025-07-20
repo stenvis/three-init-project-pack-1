@@ -1,35 +1,35 @@
-import DOM from '/js/storage/dom.js';
-import listener from '/js/lib/helpers/browser/listener.js';
-import Resize from '/js/lib/3D/resize/resize.js';
+import Resize from '/js/system/resize.js';
 import system from '/js/system/system.js';
+import temp_name from '/js/lib/project/index.js';
 
 let _rAF;
 
-const
-   { canvas } = DOM,
-   { scene, renderer, camera, stats } = system,
-   { addEv } = listener;
+const { scene, renderer, camera, orbit, canvas } = system;
 
 const resize = new Resize(system, canvas);
+
+const clock = new THREE.Clock();
 
 const render = {
    start,
    stop,
 };
 
-const _checkResize = () => { resize.check(); };
+function checkResize() { 
+   resize.check();
+};
 
 function tick() {
-   stats.begin();
-   renderer.render(scene, camera.src);
+   renderer.render(scene, camera);
+   orbit.src.update();
+   temp_name.update(clock.getElapsedTime());
    _rAF = requestAnimationFrame(tick, canvas);
-   stats.end();
 };
 
 function start() {
    tick();
-   addEv(window, 'resize', _checkResize);
-   _checkResize();
+   window.addEventListener('resize', checkResize);
+   checkResize();
 };
 
 function stop() {

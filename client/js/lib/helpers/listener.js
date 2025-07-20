@@ -1,6 +1,6 @@
-const addEv = (element, evType, handler, obj = {
+const addEv = (element, evType, handler, options, obj = {
    addEv: (element, evType, handler) => (element.addEventListener(evType, handler), obj),
-}) => (element.addEventListener(evType, handler), obj);
+}) => (element.addEventListener(evType, handler, options), obj);
 
 const addEvArr = (elements, evType, handler, obj = {
    addEvArr: (elements, evType, handler) => { for (const element of elements) element.addEventListener(evType, handler); return obj },

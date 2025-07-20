@@ -1,4 +1,4 @@
-import OrbitControls from '/dependencies/three/controls/OrbitControls.js';
+import { OrbitControls } from '/dependencies/three/controls/OrbitControls.js';
 
 class OrbitControl {
    orbit;

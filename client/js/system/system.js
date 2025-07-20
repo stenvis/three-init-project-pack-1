@@ -1,57 +1,47 @@
-import DOM from '/js/storage/dom.js';
-import SYSTEM_PRESETS from '/js/system/presets.js';
-import Configer from '/js/lib/3D/configer/configer.js';
-import Camera from '/js/lib/3D/camera/camera.js';
-import OrbitControls from '/js/lib/3D/controls/orbit.js';
-import HemisphereLight from '/js/lib/3D/light/hemisphere.js';
-import Workspace from '/js/lib/abstractions/workspace/workspace.js';
+import { canvas_bg_color } from "/configs/configs.js";
+import SYSTEM_PRESETS from "/js/system/presets.js";
+import OrbitControl from "/js/lib/3D/controls/orbit.js";
 
-// development
-import Stats from '/dependencies/three/stats/stats.js'; // FPS
-//
+const {
+   CTX_PRESETS,
+   ORBIT_CONTROL_PRESETS,
+} = SYSTEM_PRESETS;
 
-const 
-   { canvas } = DOM,
-   { 
-      CTX_PRESETS,
-      CHARACTER_CAMERA_PRESETS,
-      ORBIT_CONTROL_PRESETS,
-      HEMISPHERE_LIGHT_PRESETS,
-   } = SYSTEM_PRESETS;
+const canvas = document.getElementById('canvas');
 
 const 
    scene = new THREE.Scene(),
-   clock = new THREE.Clock(),
    renderer = new THREE.WebGLRenderer({
       canvas,
       ...CTX_PRESETS,
    });
 
-const 
-   configer = new Configer(),
-   workspace = new Workspace(scene);
 
-configer.setRenderer(renderer);
+scene.background = new THREE.Color(canvas_bg_color);
 
-const 
-   camera = new Camera(CHARACTER_CAMERA_PRESETS),
-   orbit = new OrbitControls(camera.src, canvas, ORBIT_CONTROL_PRESETS),
-   stats = new Stats(),
-   hemisphere_light = new HemisphereLight(HEMISPHERE_LIGHT_PRESETS); 
+const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
+const orbit = new OrbitControl(camera, canvas, ORBIT_CONTROL_PRESETS);
 
-scene.add(hemisphere_light);
+const directionalLight = new THREE.DirectionalLight(0xffffff, 2);
+scene.add(directionalLight);
 
-document.body.appendChild(stats.dom);
+const ambientLight = new THREE.AmbientLight(0xffffff, 2);
+scene.add(ambientLight);
+
+const hemiLight = new THREE.HemisphereLight(0x03dffc, 0x3d362b, 2);
+hemiLight.position.set(0, 20, 0);
+scene.add(hemiLight);
+
+camera.position.set(12, 0, 0);
 
 const system = {
+   canvas,
    scene,
    renderer,
    camera,
-   clock,
-   stats,
+   orbit,
 };
 
 window.THREE_APP.system = system; 
-window.THREE_APP.workspace = workspace; 
 
 export default system;
